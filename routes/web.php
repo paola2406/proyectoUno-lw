@@ -33,8 +33,7 @@ Route::get('/listaProducto',function(){
     return view('productos.listaProducto',compact('productos'));
   });
 
-  Route::get('/logout',[AuthenticatedSessionController::class,'destroy'])
-  ->name('logout');
+
 
 
 Route::resource('/producto', ProductoController::class);
