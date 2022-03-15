@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,22 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::get('bienvenida',function(){
+  return view("bienvenida");
+});
+
+Route::get('/listaProducto',function(){
+    $productos = DB::table('productos')->get();
+    return view('productos.listaProducto',compact('productos'));
+  });
+
+  Route::get('/logout',[AuthenticatedSessionController::class,'destroy'])
+  ->name('logout');
+
+
+Route::resource('/producto', ProductoController::class);
+
+
+
